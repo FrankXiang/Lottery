@@ -38,5 +38,6 @@ public class Lottery {
 		System.out.println("blue ball:"+(random.nextInt(16)+1));
 		
 	}
+	
 
 }
