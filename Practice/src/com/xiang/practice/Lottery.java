@@ -1,12 +1,14 @@
 package com.xiang.practice;
 
 import java.util.Random;
+import java.util.TreeSet;
 
 public class Lottery {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int array[] = getRandom(6,33);
+		//int array[] = getRandom(6,33);
+		Integer[] array = getRandomSet(6,33);
 		printLottery(array);
 		
 
@@ -14,8 +16,7 @@ public class Lottery {
 	
 	
 	//获得随机数
-	public static int[] getRandom(int size,int redIndex){
-		int[] array = new int[size];
+	private static int[] getRandom(int size,int redIndex,int[] array){
 		Random random = new Random();
 		int num = 0;
 		boolean[] bool = new boolean[redIndex+1];	//后面要＋1，所以此处边界要注意
@@ -29,7 +30,22 @@ public class Lottery {
 		return array;
 	}
 	
-	public static void printLottery(int[] array){
+	//通过treeSet方法来获得随机数
+	private static Integer[] getRandomSet(int size,int redIndex){
+		Integer[] array = new Integer[size];
+		TreeSet<Integer> set = new TreeSet<Integer>();
+		Random random = new Random();
+		int count = 0;
+		while(count < size){
+			boolean succeed = set.add(random.nextInt(redIndex)+1);
+			//System.out.println(succeed);
+			if(succeed)count++;
+		}
+		return set.toArray(array);
+		
+	}
+	
+	private static void printLottery(Integer[] array){
 		Random random = new Random();
 		System.out.print("red balls:");
 		for(int i:array)
